@@ -27,30 +27,40 @@ class MainViewModel : ViewModel() {
      */
     fun loadFiltered(id: String) {
         val ref = firebaseDatabase.getReference("Items")
-        val query: Query = ref.orderByChild("categoryId").equalTo(id)
 
-        query.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val lists = mutableListOf<ItemsModel>()
+        // Convert id to Int and ensure compatibility with Firebase
+        val categoryIdInt = id.toIntOrNull()
+        if (categoryIdInt != null) {
+            val query: Query = ref.orderByChild("categoryId").equalTo(categoryIdInt.toDouble())
 
-                // Iterate over the snapshot children to extract ItemsModel objects
-                for (childSnapshot in snapshot.children) {
-                    val list = childSnapshot.getValue(ItemsModel::class.java)
-                    if (list != null) {
-                        lists.add(list)
+            query.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val lists = mutableListOf<ItemsModel>()
+
+                    // Log the query result size for debugging
+                    Log.d("MainViewModel", "Snapshot children count: ${snapshot.childrenCount}")
+
+                    for (childSnapshot in snapshot.children) {
+                        val list = childSnapshot.getValue(ItemsModel::class.java)
+                        if (list != null) {
+                            Log.d("MainViewModel", "Item found: ${list.title}, CategoryId: ${list.categoryId}")
+                            lists.add(list)
+                        }
                     }
+
+                    // Update LiveData
+                    _recommended.value = lists
                 }
 
-                // Update the LiveData with the retrieved recommended items
-                _recommended.value = lists
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Log any database errors
-                Log.e("MainViewModel", "Database error: ${error.message}")
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("MainViewModel", "Database error: ${error.message}")
+                }
+            })
+        } else {
+            Log.e("MainViewModel", "Invalid categoryId: $id")
+        }
     }
+
 
     fun loadRecommended() {
         val Ref = firebaseDatabase.getReference("Items")
