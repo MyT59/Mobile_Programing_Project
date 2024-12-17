@@ -48,4 +48,11 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="let_s_get_started">Let\'s Get Started</string>
+    <string name="my_cart">My Cart</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="fee_delivery">Fee Delivery</string>
+    <string name="total_tax">Total Tax</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="pay_cash_when_the_medicines_at_the_destination">Pay Cash When the Medicines at the destination</string>
+    <string name="login_to_your_online_account_payment">Login to your online account payment</string>
 </resources>

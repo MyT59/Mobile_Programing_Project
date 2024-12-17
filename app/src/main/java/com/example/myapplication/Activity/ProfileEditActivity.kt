@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.Activity
 
 import android.content.Intent
 import android.graphics.Bitmap
@@ -9,6 +9,8 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.Helper.DatabaseHelper
+import com.example.myapplication.R
 
 class ProfileEditActivity : AppCompatActivity() {
 

@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SignUpActivity"
-    android:background="@drawable/signupbckground"
+    tools:context=".Activity.SignUpActivity"
+    android:background="@drawable/signup_background"
     android:gravity="center">
 
     <androidx.cardview.widget.CardView
@@ -40,7 +40,7 @@
                 android:background="@drawable/lavender_border"
                 android:layout_marginTop="40dp"
                 android:padding="15dp"
-                android:hint="Name"
+                android:hint="Username"
                 android:drawableLeft="@drawable/user_circle"
                 android:drawablePadding="10dp"
                 android:textColor="@color/black"/>

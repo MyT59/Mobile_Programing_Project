@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IntroActivity2">
+    tools:context=".Activity.IntroActivity2">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -74,11 +74,12 @@
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Signin"
-                    android:textSize="20dp"
-                    android:textAlignment="textStart"
                     android:layout_gravity="bottom"
-                    android:layout_marginStart="425dp"
+                    android:layout_marginStart="1250dp"
+                    android:text="@string/Signin"
+                    android:textAlignment="textStart"
+                    android:textSize="20dp"
+                    android:layout_marginBottom="40dp"
                     tools:ignore="RtlCompat" />
 
                 <TextView

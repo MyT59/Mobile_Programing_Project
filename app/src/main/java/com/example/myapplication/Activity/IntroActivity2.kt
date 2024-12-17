@@ -1,13 +1,7 @@
-package com.example.myapplication
+package com.example.myapplication.Activity
 
 import android.content.Intent
-import android.graphics.Matrix
 import android.os.Bundle
-import android.widget.ImageView
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.myapplication.databinding.ActivityIntro2Binding
 
 class IntroActivity2 : BaseActivity() {
@@ -24,6 +18,9 @@ class IntroActivity2 : BaseActivity() {
             }
             textView5.setOnClickListener {
                 startActivity(Intent(this@IntroActivity2, SignUpActivity::class.java))
+            }
+            textView4.setOnClickListener {
+                startActivity(Intent(this@IntroActivity2, LoginActivity::class.java ))
             }
         }
     }

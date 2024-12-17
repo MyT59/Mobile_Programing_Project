@@ -1,0 +1,48 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center"
+    android:background="#FFFFFF">
+
+    <ImageView
+        android:id="@+id/fingerprint_icon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/fingerpint"
+        android:contentDescription="Fingerprint Icon" />
+
+    <TextView
+        android:id="@+id/fingerprint_prompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Touch the fingerprint sensor to add your fingerprint"
+        android:textSize="16sp"
+        android:textColor="#333333"
+        android:gravity="center"
+        android:padding="8dp" />
+
+    <Button
+        android:id="@+id/enable_fingerprint_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Enable Fingerprint"
+        android:backgroundTint="@color/blue"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/disable_fingerprint_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Disable Fingerprint"
+        android:backgroundTint="@color/black"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
+</LinearLayout>
