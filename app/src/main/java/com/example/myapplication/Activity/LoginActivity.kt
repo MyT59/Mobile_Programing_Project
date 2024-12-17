@@ -46,7 +46,8 @@ class LoginActivity : AppCompatActivity() {
 
         if (username.isNotBlank() && password.isNotBlank()) {
             if (databaseHelper.validateUser(username, password)) {
-                val intent = Intent(this, ProfileActivity::class.java)
+                // Navigate to MainActivity and pass the username
+                val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("username", username)
                 startActivity(intent)
                 finish()
@@ -57,6 +58,7 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "Please enter both username and password", Toast.LENGTH_SHORT).show()
         }
     }
+
 
     private fun redirectToSignUp() {
         val intent = Intent(this, SignUpActivity::class.java)

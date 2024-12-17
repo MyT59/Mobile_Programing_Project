@@ -43,5 +43,6 @@ class ListItemsAdapter(val items: MutableList<ItemsModel>) : RecyclerView.Adapte
         }
     }
 
+
     override fun getItemCount(): Int = items.size
 }
