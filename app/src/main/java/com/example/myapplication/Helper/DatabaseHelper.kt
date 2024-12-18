@@ -30,11 +30,11 @@ class DatabaseHelper(context: Context) :
                 "$COLUMN_EMAIL TEXT, " +
                 "$COLUMN_PASSWORD TEXT, " +
                 "$COLUMN_PROFILE_NAME TEXT, " +
-                "$COLUMN_PROFILE_PICTURE BLOB)" +
+                "$COLUMN_PROFILE_PICTURE BLOB, " + // <-- Add a comma here
                 "$COLUMN_FINGERPRINT_ENABLED INTEGER DEFAULT 0)")
-
         db?.execSQL(createTable)
     }
+
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")

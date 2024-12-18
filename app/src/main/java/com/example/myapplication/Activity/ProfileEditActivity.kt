@@ -1,6 +1,8 @@
 package com.example.myapplication.Activity
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
@@ -9,10 +11,12 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.myapplication.Helper.DatabaseHelper
 import com.example.myapplication.R
 
-class ProfileEditActivity : AppCompatActivity() {
+class ProfileEditActivity : BaseActivity() {
 
     private lateinit var profileImageView: ImageView
     private lateinit var profileNameEditText: EditText
@@ -21,6 +25,7 @@ class ProfileEditActivity : AppCompatActivity() {
     private lateinit var databaseHelper: DatabaseHelper
 
     private val CAMERA_REQUEST_CODE = 1001
+    private val CAMERA_PERMISSION_CODE = 1002
     private var profileImage: Bitmap? = null
     private var username: String? = null
 
@@ -40,8 +45,16 @@ class ProfileEditActivity : AppCompatActivity() {
 
         // Handle camera click
         captureImageButton.setOnClickListener {
-            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE)
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                openCamera()
+            } else {
+                // Request Camera permission
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.CAMERA),
+                    CAMERA_PERMISSION_CODE
+                )
+            }
         }
 
         // Handle save button click
@@ -72,5 +85,28 @@ class ProfileEditActivity : AppCompatActivity() {
             profileImage = data?.extras?.get("data") as Bitmap
             profileImageView.setImageBitmap(profileImage)
         }
+    }
+
+    // Handle permission result
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == CAMERA_PERMISSION_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                openCamera()
+            } else {
+                Toast.makeText(this, "Camera permission is required to take a picture", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    // Open the camera
+    private fun openCamera() {
+        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE)
     }
 }
